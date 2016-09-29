@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
  * Date: 27.09.16
  * Time: 10:43
  */
-public class CustomerTest {
+public class UserTest {
 
     public static final String ADDRESS = "Jizni 718";
     public static final String LAST_NAME = "Bednar";
@@ -37,19 +37,19 @@ public class CustomerTest {
 
     @Test(expected = IllegalStateException.class)
     public void shouldFailedWhenRequiredAttributeIsMissing() throws Exception {
-        Customer customer = ImmutableCustomer.builder().
+        User user = ImmutableUser.builder().
                 firstname(FIRST_NAME).
                 lastname(LAST_NAME).
                 build();
 
 
-        assertEquals(customer.getFirstname(), FIRST_NAME);
-        assertEquals(customer.getLastname(), LAST_NAME);
+        assertEquals(user.getFirstname(), FIRST_NAME);
+        assertEquals(user.getLastname(), LAST_NAME);
     }
 
     @Test
     public void builderTest() throws Exception {
-        Customer customer = ImmutableCustomer.builder().
+        User user = ImmutableUser.builder().
                 firstname(FIRST_NAME).
                 lastname(LAST_NAME).
                 address(ADDRESS).
@@ -58,14 +58,14 @@ public class CustomerTest {
                 build();
 
 
-        assertEquals(customer.getFirstname(), FIRST_NAME);
-        assertEquals(customer.getLastname(), LAST_NAME);
-        assertEquals(customer.getAddress(), ADDRESS);
+        assertEquals(user.getFirstname(), FIRST_NAME);
+        assertEquals(user.getLastname(), LAST_NAME);
+        assertEquals(user.getAddress(), ADDRESS);
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void listsShoudBeImmutable() throws Exception {
-        Customer customer = ImmutableCustomer.builder().
+        User user = ImmutableUser.builder().
                 firstname(FIRST_NAME).
                 lastname(LAST_NAME).
                 address(ADDRESS).
@@ -74,12 +74,12 @@ public class CustomerTest {
                 build();
 
 
-        customer.getPhoneNumbers().add("GRRRR");
+        user.getPhoneNumbers().add("GRRRR");
     }
 
     @Test
     public void createNewInstanceWhenAddindgItemToList() throws Exception {
-        ImmutableCustomer customer = ImmutableCustomer.builder().
+        ImmutableUser user = ImmutableUser.builder().
                 firstname(FIRST_NAME).
                 lastname(LAST_NAME).
                 address(ADDRESS).
@@ -88,13 +88,13 @@ public class CustomerTest {
                 build();
 
 
-        ImmutableCustomer newCustomer = customer.withPhoneNumbers("NEW");
-        assertNotEquals(customer, newCustomer);
+        ImmutableUser newUser = user.withPhoneNumbers("NEW");
+        assertNotEquals(user, newUser);
     }
 
     @Test()
     public void validationShouldFailed() throws Exception {
-        Customer customer = ImmutableCustomer.builder().
+        User user = ImmutableUser.builder().
                 firstname("A").
                 lastname(LAST_NAME).
                 address(ADDRESS).
@@ -102,7 +102,7 @@ public class CustomerTest {
                 addPhoneNumbers("+420 123 456 789", "+421 111 222 333").
                 build();
 
-        Set<ConstraintViolation<Customer>> constraintViolations = validator.validate(customer);
+        Set<ConstraintViolation<User>> constraintViolations = validator.validate(user);
 
         assertNotNull(constraintViolations);
         assertEquals(3, constraintViolations.size());

@@ -3,7 +3,7 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -11,10 +11,9 @@ repositories {
 
 dependencies {
     compile 'org.hibernate:hibernate-validator:5.2.4.Final'
-//    compile 'org.hibernate:hibernate-validator-cdi:5.2.4.Final'
-
     compile 'org.glassfish.web:javax.el:2.2.4'
 
     compileOnly group: 'org.immutables', name: 'value', version: '2.3.1'
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

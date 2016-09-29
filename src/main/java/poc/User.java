@@ -9,22 +9,22 @@ import java.util.List;
 
 /**
  * User: mbednar
- * Date: 27.09.16
- * Time: 10:40
+ * Date: 29.09.16
+ * Time: 9:37
  */
 @Value.Immutable
-public interface Customer {
+public abstract class User {
     @Size(min = 2)
-    String getFirstname();
+    abstract String getFirstname();
 
     @Size(max = 5)
-    String getLastname();
+    abstract String getLastname();
 
     @NotNull
-    String getAddress();
+    abstract String getAddress();
 
     @Pattern(regexp = "[0-9]5")
-    String getZip();
+    abstract String getZip();
 
-    List<String> getPhoneNumbers();
+    abstract List<String> getPhoneNumbers();
 }
